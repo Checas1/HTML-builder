@@ -1,11 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-let commonStyle = fs.createWriteStream(
-  path.join(__dirname, 'project-dist', 'bundle.css')
-);
-
 async function mergeStyle() {
+  let commonStyle = fs.createWriteStream(
+    path.join(__dirname, 'project-dist', 'bundle.css')
+  );
   fs.readdir(
     path.join(__dirname, 'styles'),
     {

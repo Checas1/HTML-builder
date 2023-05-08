@@ -12,7 +12,7 @@ async function checkHolder() {
         const fileName = path.parse(file).name;
         const extName = path.extname(file).slice(1);
         const sizeFile = stat.size / 1024;
-        stdout.write(`${fileName} - ${extName} - ${sizeFile}kb\n`);
+        stdout.write(fileName + ' - ' + extName + ' - ' + sizeFile + 'kb\n');
       }
     });
   });
