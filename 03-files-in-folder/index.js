@@ -3,8 +3,10 @@ const path = require('path');
 const fs = require('fs');
 
 const directory = path.join(__dirname, 'secret-folder');
-fs.readdir(directory, (error, file) => {
-  file.forEach((file) => {
+
+async function checkHolder() {
+  const directoryFiles = await fs.promises.readdir(directory);
+  directoryFiles.forEach((file) => {
     fs.stat(path.join(__dirname, 'secret-folder', file), (error, stat) => {
       if (stat.isFile()) {
         const fileName = path.parse(file).name;
@@ -14,4 +16,5 @@ fs.readdir(directory, (error, file) => {
       }
     });
   });
-});
+}
+checkHolder();
