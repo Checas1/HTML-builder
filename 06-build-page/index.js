@@ -143,19 +143,20 @@ async function htmlCreate() {
     );
     array.push(
       new Promise((resolve, reject) => {
-        fs.readFile(componentFile, 'utf8', (err, componentHTML) => {
+        fs.readFile(componentFile, 'utf8', (err, file) => {
           if (err) {
             reject(err);
+            throw err;
           } else {
-            resolve({ tag, componentHTML });
+            resolve({ tag, file });
           }
         });
       })
     );
   });
   const results = await Promise.all(array);
-  results.forEach(({ tag, componentHTML }) => {
-    sampleFile = sampleFile.replace(tag, componentHTML);
+  results.forEach(({ tag, file }) => {
+    sampleFile = sampleFile.replace(tag, file);
   });
 
   await fs.promises.writeFile(
